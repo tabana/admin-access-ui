@@ -8,54 +8,66 @@ const CompanyForm = (props) => {
     const { initialCompany } = props
     const { setInitialCompany } = props
 
-    const [currentCompany, setCurrentCompany] = useState({...initialCompany})
+    const [id, setId] = useState(initialCompany.id)
+    const [name, setName] = useState(initialCompany.name)
+    const [address, setAddress] = useState(initialCompany.address)
+    const [account, setAccount] = useState(initialCompany.account)
+    const [admin, setAdmin] = useState(initialCompany.admin)
+    const [startDate, setStartDate] = useState(initialCompany.startDate)
+    const [end, setEnd] = useState(initialCompany.end)
+    const [addEnabled, setAddEnabled] = useState(true)
+    const [updateEnabled, setUpdateEnabled] = useState(true)
+    const [cancelEnabled, setCancelEnabled] = useState(true)
 
-    const handleSubmit = (evt) => {
+    const handleAdd = (evt) => {
         evt.preventDefault()
 
-        setInitialCompany(evt)
+        setInitialCompany({
+            id: id,
+            name: name,
+            address: address,
+            account: account,
+            admin: admin,
+            startDate: startDate,
+            end: end
+        })
     }
 
-    const handleClear = (evt) => {
+    const handleUpdate = (evt) => {
         evt.preventDefault()
 
-        setCurrentCompany(initialCompany)
+        setInitialCompany({
+            name: name,
+            address: address,
+            account: account,
+            admin: admin,
+            startDate: startDate,
+            end: end
+        })
     }
 
-    const handleInputNameChanged = (evt) => {
-        currentCompany.name = evt.target.value
-    }
+    const handleCancel = (evt) => {
+        evt.preventDefault()
 
-    const handleInputAddressChanged = (evt) => {
-        currentCompany.address = evt.target.value
-    }
-
-    const handleInputAccountChanged = (evt) => {
-        currentCompany.address = evt.target.value
-    }
-
-    const handleInputAdminChanged = (evt) => {
-        currentCompany.admin = evt.target.value
-    }
-
-    const handleInputStartDateChanged = (evt) => {
-        currentCompany.startdate = evt.target.value
-    }
-
-    const handleInputEndChanged = (evt) => {
-        currentCompany.end = evt.target.value
+        setName(initialCompany.name)
+        setAddress(initialCompany.address)
+        setAccount(initialCompany.account)
+        setAdmin(initialCompany.admin)
+        setStartDate(initialCompany.startDate)
+        setEnd(initialCompany.end)
     }
 
     return (
         <form>
-            <Input title={'Name:'} placeholder={'Name'} onChange={handleInputNameChanged} value={currentCompany.name} />
-            <Input title={'Address:'} placeholder={'Address'} onChange={handleInputAddressChanged} value={currentCompany.address} />
-            <Input title={'Account:'} placeholder={'Account'} onChange={handleInputAccountChanged} value={currentCompany.account} />
-            <Input title={'Admin:'} placeholder={'Admin'} onChange={handleInputAdminChanged} value={currentCompany.admin} />
-            <Input title={'Start Date:'} placeholder={'Start Date'} onChange={handleInputStartDateChanged} value={currentCompany.startdate} />
-            <Input title={'End:'} placeholder={'End'} onChange={handleInputEndChanged} value={currentCompany.end} />
-            <Button title='Add' type='btn btn-primary' style={{ margin: '10px 10px 10px 10px' }} onClick={handleSubmit} />
-            <Button title='Clear' type='btn btn-primary' style={{ margin: '10px 10px 10px 10px' }} onClick={handleClear} />
+            <Input title={'Name:'} placeholder={'Name'} onChange={e => setName(e.target.value)} value={name} />
+            <Input title={'Address:'} placeholder={'Address'} onChange={e => setAddress(e.target.value)} value={address} />
+            <Input title={'Account:'} placeholder={'Account'} onChange={e => setAccount(e.target.value)} value={account} />
+            <Input title={'Admin:'} placeholder={'Admin'} onChange={e => setAdmin(e.target.value)} value={admin} />
+            <Input title={'Start Date:'} placeholder={'Start Date'} onChange={e => setStartDate(e.target.value)} value={startDate} />
+            <Input title={'End:'} placeholder={'End'} onChange={e => setEnd(e.target.value)} value={end} />
+            <Button title={'Add New'} type='btn btn-primary' style={{ margin: '10px 10px 10px 10px' }} onClick={handleAdd} disabled={!addEnabled} />
+            <Button title={'Update'} type='btn btn-primary' style={{ margin: '10px 10px 10px 10px' }} onClick={handleUpdate} disabled={!updateEnabled} />
+            <Button title={'Cancel'} type='btn btn-primary' style={{ margin: '10px 10px 10px 10px' }} onClick={handleCancel} disabled={!cancelEnabled} />
         </form>
     )
 }

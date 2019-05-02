@@ -61,7 +61,7 @@ class App extends Component {
   })
 
   render() {
-    // if (this.state.session) {
+    if (this.state.session) {
       return (
         <ApolloProvider client={this.client}>
           <ApolloProviderHooks client={this.client}>
@@ -74,10 +74,10 @@ class App extends Component {
               currentCompanyId={this.state.currentCompanyId}
               setCurrentCompanyId={this.setCurrentCompanyId}
             /> */}
-            {/* <CompaniesSelect
+            <CompaniesSelect
               currentCompanyId={this.state.currentCompanyId}
               setCurrentCompanyId={this.setCurrentCompanyId}
-            /> */}
+            />
             <CompanyDetail
               currentCompanyId={this.state.currentCompanyId}
               setCurrentCompanyId={this.setCurrentCompanyId}
@@ -97,14 +97,14 @@ class App extends Component {
           </ApolloProviderHooks>
         </ApolloProvider>
       )
-    // } else {
-    //   return (
-    //     <Authorize
-    //       sessionId={this.state.sessionId}
-    //       setSession={this.setSession}
-    //     />
-    //   )
-    // }
+    } else {
+      return (
+        <Authorize
+          sessionId={this.state.sessionId}
+          setSession={this.setSession}
+        />
+      )
+    }
   }
 }
 

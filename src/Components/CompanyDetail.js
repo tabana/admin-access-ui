@@ -10,12 +10,12 @@ const CompanyDetail = (props) => {
     const { currentCompanyId } = props
 
     let initialCompany = {
-        name: undefined,
-        address: undefined,
-        account: undefined,
-        admin: undefined,
-        startDate: undefined,
-        end: undefined
+        name: '',
+        address: '',
+        account: '',
+        admin: '',
+        startDate: '',
+        end: ''
     }
 
     const setInitialCompany = (updatedCompany) => {

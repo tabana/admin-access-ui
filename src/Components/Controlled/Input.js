@@ -1,18 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Input = props => {
 
+    const { type } = props
+    const { title } = props
+    const { name } = props
+    const { placeholder } = props
+    const { value } = props
+    const { onChange } = props
+
     return (
         <div className="form-group">
-            <label for={props.name} className="form-label">
-                {props.title}
+            <label for={name} className="form-label">
+                {title}
             </label>
             <input
                 className="form-control"
-                type={props.type}
-                value={props.value}
-                onChange={props.onChange}
-                placeholder={props.placeholder}
+                type={type}
+                value={value}
+                onChange={onChange}
+                placeholder={placeholder}
                 {...props}
             />
         </div>
